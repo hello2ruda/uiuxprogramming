@@ -225,6 +225,13 @@ select option {
 .primary-button:active { 
     transform: translateY(2px); 
 }
+#result-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    word-break: keep-all; 
+}
 
 .site-footer {
     padding-top: 24px;
