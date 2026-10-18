@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>보이저스 노트 - 당신의 궤도에 맞춘 우주 매거진</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -35,22 +36,41 @@
             </div>
         </section>
 
-        <section id="features" class="content-section">
+       <section id="features" class="content-section">
             <h2>오직 당신의 궤도에 맞춘 컨텐츠</h2>
-            <ul class="feature-list">
-                <li class="feature-card">
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-target="tab1">감성 궤도</button>
+                <button class="tab-btn" data-target="tab2">심층 궤도</button>
+                <button class="tab-btn" data-target="tab3">구독 혜택</button>
+            </div>
+
+            <div class="tab-content-area">
+                <div id="tab1" class="feature-card tab-content active">
                     <h3>스타라이트 라운지</h3>
-                    <p>밤하늘 산책 가이드, 별자리 신화, 천체 사진가들의 따뜻한 비하인드 스토리를 전합니다.</p>
-                </li>
-                <li class="feature-card">
+                    <p>도심의 네온사인 속에서도 길잡이 별을 찾을 수 있는 실전 밤하늘 산책 가이드부터, 수천 년 전 인류가 상상력으로
+                         그려낸 계절별 별자리 신화의 숨겨진 의미를 깊이 있게 조명합니다. 또한, 밤을 지새우며 렌즈 너머 묵묵히 광활한 
+                         우주를 담아내는 천체 사진가들의 따뜻하고 낭만적인 비하인드 스토리와 인터뷰를 함께 전합니다. 숫자와 공식으로 
+                         이루어진 차가운 과학으로서의 우주가 아닌, 지친 하루의 끝에서 마음의 평안을 얻고 밤하늘을 올려다볼 수 있는 
+                         작은 여유와 다정한 위로를 선물하는 감성 큐레이션입니다.</p>
+                </div>
+                <div id="tab2" class="feature-card tab-content">
                     <h3>딥 스페이스 랩</h3>
-                    <p>글로벌 우주 투자 동향, 재사용 로켓 기술, JWST 관측 데이터의 산업적 파급력을 분석합니다.</p>
-                </li>
-                <li class="feature-card">
+                    <p>급변하는 '뉴스페이스' 시대에 발맞춰 글로벌 우주 기업들의 투자 동향과 산업의 흐름, 그리고 판도를 
+                        뒤흔드는 혁신적인 로켓 재사용 기술의 현주소를 낱낱이 파헤칩니다. 나아가 제임스 웹 우주 망원경이 보내온 
+                        최신 관측 데이터가 현대 산업 전반에 미칠 파급력과, 민간 달 탐사 프로젝트가 창출할 새로운 경제적 가치를 다각도로 
+                        분석합니다. 거대한 우주 경제의 흐름을 한발 앞서 꿰뚫어 보고, 기술의 최전선에서 벌어지는 치열한 혁신의 과정들을 
+                        전문가 수준의 날카로운 비즈니스 인사이트로 제공합니다.</p>
+                </div>
+                <div id="tab3" class="feature-card tab-content">
                     <h3>맞춤형 인사이트 보관소</h3>
-                    <p>선택한 플랜에 맞춰 엄선된 아티클이 매주 금요일 당신의 메일함으로 배달됩니다.</p>
-                </li>
-            </ul>
+                    <p>당신이 선택한 궤도에 맞춰 전문 에디터가 정성껏 엄선한 고품질 아티클이 매주 금요일 아침 8시, 갓 내린 커피 향과 함께 
+                        당신의 메일함으로 조용히 배달됩니다. 바쁜 일정 탓에 메일을 놓치거나 지난 기사가 다시 궁금해지더라도 걱정하지 마세요. 
+                        오직 정기 구독자에게만 허락된 프라이빗 웹 라운지에 접속하시면, 첫 발행본부터 차곡차곡 쌓여온 모든 과거 아카이브를 
+                        카테고리별로 무제한 열람할 수 있습니다. 단순한 뉴스레터 구독을 넘어, 언제든 원할 때 찾아가 우주적 영감을 채울 수 
+                        있는 당신만의 아늑한 우주 도서관을 소장해 보세요.</p>
+                </div>
+            </div>
         </section>
 
         <section id="steps" class="content-section">
@@ -65,7 +85,10 @@
         <section id="subscribe" class="content-section subscribe-section">
             <h2>정기 구독 신청하기</h2>
             <p>이번 주 금요일 아침, 일상 속으로 우주의 경이로움을 배달해 드립니다.</p>
-            <form class="subscribe-form">
+            
+            <p id="greeting-message" class="greeting-text">이름을 입력하여 궤도를 설정해 보세요!</p>
+
+            <form class="subscribe-form" novalidate>
                 <div class="form-row">
                     <label class="input-field" for="subscriber-name">
                         이름 (닉네임)
@@ -85,6 +108,7 @@
                     </select>
                 </label>
                 <button class="primary-button" type="submit">보이저스 노트 탑승하기</button>
+
             </form>
         </section>
     </main>
@@ -93,5 +117,6 @@
         <p>© 2026 Voyager's Note. All rights reserved.</p>
     </footer>
 
+    <script src="script.js"></script> 
 </body>
 </html>
