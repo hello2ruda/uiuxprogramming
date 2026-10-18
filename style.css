@@ -255,7 +255,33 @@ select option {
 .primary-button:active { 
     transform: translateY(2px); 
 }
-
+#result-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    word-break: keep-all; 
+}
+.secondary-button {
+    margin-top: 10px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: #cbd5e1;
+    font: inherit;
+    font-weight: 700;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.secondary-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+.secondary-button:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
 
 .site-footer {
     padding-top: 24px;
