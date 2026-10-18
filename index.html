@@ -103,14 +103,45 @@
                     구독 플랜
                     <select id="plan" name="plan" required>
                         <option value="">-- 원하시는 궤도를 선택해 주세요 --</option>
-                        <option value="starlight">스타라이트 라운지 (감성 콘텐츠)</option>
-                        <option value="deepspace">딥 스페이스 랩 (심층 리포트)</option>
+                        <option value="starlight">스타라이트 라운지</option>
+                        <option value="deepspace">딥 스페이스 랩</option>
                     </select>
                 </label>
                 <button class="primary-button" type="submit">보이저스 노트 탑승하기</button>
                 <p id="result-message"></p>
-                <button id="reset-button" class="secondary-button" type="button" style="display: none;">새로운 궤도 탐색하기</button>
             </form>
+
+            <div id="ticket-area" style="display: none;" class="ticket-card">
+                <div class="ticket-header" id="ticket-header">
+                    <h3>🪐 VOYAGER BOARDING PASS</h3>
+                </div>
+                
+                <div class="ticket-body">
+                    <div class="ticket-info-grid">
+                        <div class="info-group">
+                            <p><strong>NAME:</strong> <span id="ticket-name"></span></p>
+                            <p><strong>E-MAIL:</strong> <span id="ticket-email"></span></p>
+                            <p><strong>DESTINATION:</strong> <span id="ticket-plan"></span></p>
+                            <p><strong>FLIGHT NO:</strong> <span id="ticket-number"></span></p> 
+                        </div>
+                        <div class="info-group">
+                            <p><strong>SEAT:</strong> <span id="ticket-seat"></span></p>
+                            <p><strong>GATE:</strong> <span id="ticket-gate"></span></p>
+                            <p><strong>B-TIME:</strong> <span id="ticket-time"></span></p>
+                            <p><strong>CLASS:</strong> <span>EXPLORER</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="stamp-container">
+                        <div class="hologram-stamp">BOARDING<br>APPROVED</div>
+                    </div>
+                </div>
+                
+                <div class="ticket-footer">
+                    <button id="cancel-ticket-btn" class="ticket-cancel-btn" type="button">탑승 취소 및 궤도 재설정</button>
+                </div>
+            </div>
+
         </section>
     </main>
 

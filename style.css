@@ -255,33 +255,6 @@ select option {
 .primary-button:active { 
     transform: translateY(2px); 
 }
-#result-message {
-    text-align: center;
-    margin-top: 15px;
-    font-weight: 700;
-    font-size: 16px;
-    word-break: keep-all; 
-}
-.secondary-button {
-    margin-top: 10px;
-    padding: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    color: #cbd5e1;
-    font: inherit;
-    font-weight: 700;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-.secondary-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-.secondary-button:focus {
-    outline: 2px solid #ffffff;
-    outline-offset: 3px;
-}
 
 .site-footer {
     padding-top: 24px;
@@ -335,7 +308,130 @@ select option {
     display: block; 
 }
 
+.ticket-card {
+    max-width: 750px; 
+    width: 100%;
+    margin: 24px auto 0;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ticket-header {
+    padding: 16px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+.header-starlight {
+    background: linear-gradient(135deg, #f6d365, #fda085);
+}
+.header-deepspace {
+    background: linear-gradient(135deg, #70678a, #3a3252);
+}
+
+.ticket-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 4px;
+    text-shadow: none;
+}
+
+.ticket-body {
+    padding: 32px 40px;
+    color: #cbd5e1;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.ticket-info-grid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-group p {
+    margin-bottom: 12px;
+}
+.info-group strong {
+    color: #00d2ff;
+    display: inline-block;
+    width: 120px;
+}
+
+.stamp-container {
+    text-align: right;
+    margin-top: -45px; 
+    padding-right: 20px;
+    position: relative;
+    z-index: 1; 
+}
+
+.hologram-stamp {
+    display: inline-block;
+    border: 2px solid #00ff88; 
+    color: #00ff88;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; 
+    font-weight: 700;
+    padding: 6px 14px; 
+    border-radius: 6px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px rgba(0, 255, 136, 0.6);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3), inset 0 0 8px rgba(0, 255, 136, 0.2);
+    opacity: 0; 
+    animation: stampEffect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+}
+
+@keyframes stampEffect {
+    0% { opacity: 0; transform: scale(1.5) rotate(-15deg); }
+    100% { opacity: 0.9; transform: scale(1) rotate(-15deg); }
+}
+
+.ticket-cancel-btn {
+    width: 100%;
+    padding: 16px;
+    border: 2px dashed rgba(255, 71, 87, 0.6); 
+    border-radius: 8px;
+    color: #ff4757;
+    font: inherit;
+    font-weight: 700;
+    background: rgba(255, 71, 87, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ticket-cancel-btn:hover {
+    background: rgba(255, 71, 87, 0.15);
+    border: 2px solid #ff4757; 
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.3);
+    color: #ffffff;
+}
+
+.ticket-footer {
+    padding: 16px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.ticket-footer .secondary-button {
+    margin-top: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .ticket-info-grid {
+        flex-direction: column;
+        gap: 0;
+    }
+}
 
 
 
