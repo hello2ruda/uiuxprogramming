@@ -204,6 +204,63 @@ h3 { margin-bottom: 10px; font-size: 20px; color: #f6d365; }
     color: #94a3b8;
     font-size: 14px;
 }
+.plan-selection-group {
+    border: none;
+    padding: 0;
+    margin-bottom: 12px;
+}
+
+.plan-selection-group legend {
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.plan-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.plan-btn {
+    flex: 1;
+    cursor: pointer;
+}
+
+.plan-btn input[type="checkbox"] {
+    display: none; 
+}
+
+.plan-btn .plan-text {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #94a3b8;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.plan-btn:hover .plan-text {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.plan-btn input#plan-starlight:checked + .plan-text {
+    color: #ffffff;
+    border-color: #f6d365;
+    background-color: rgba(246, 211, 101, 0.1);
+    box-shadow: 0 0 15px rgba(246, 211, 101, 0.25);
+}
+
+.plan-btn input#plan-deepspace:checked + .plan-text {
+    color: #ffffff;
+    border-color: #a18cd1;
+    background-color: rgba(161, 140, 209, 0.1);
+    box-shadow: 0 0 15px rgba(161, 140, 209, 0.25);
+}
 
 input[type="text"],
 input[type="email"],
