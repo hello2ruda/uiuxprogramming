@@ -5,7 +5,6 @@ const emailFeedback = document.getElementById('email-feedback');
 const submitBtn = document.querySelector('.primary-button');
 const greetingMsg = document.getElementById('greeting-message');
 const message = document.getElementById('result-message');
-
 const planStarlight = document.getElementById('plan-starlight');
 const planDeepspace = document.getElementById('plan-deepspace');
 const vipArea = document.getElementById('vip-area');
@@ -15,6 +14,7 @@ const addressInput = document.getElementById('address');
 
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
+
 const ticketArea = document.getElementById('ticket-area');
 const ticketName = document.getElementById('ticket-name');
 const ticketPlan = document.getElementById('ticket-plan');
@@ -25,6 +25,18 @@ const ticketSeat = document.getElementById('ticket-seat');
 const ticketHeader = document.getElementById('ticket-header');
 const ticketGate = document.getElementById('ticket-gate');
 const ticketTime = document.getElementById('ticket-time');
+
+const navContainer = document.getElementById('nav-container');
+const menuToggleBtn = document.getElementById('menu-toggle');
+const primaryMenu = document.getElementById('primary-menu');
+const navLinks = document.querySelectorAll('.nav-list a');
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+const archiveCards = document.querySelectorAll('.archive-card');
+const archiveList = document.getElementById('archive-list');
+const countNumber = document.getElementById('count-number');
+const emptyState = document.getElementById('empty-state');
+const emptyMessage = document.getElementById('empty-message');
 
 nameInput.addEventListener('input', function() {
     let currentName = this.value.trim();
@@ -83,7 +95,6 @@ function updatePlanTheme() {
         }
     }
 }
-
 planStarlight.addEventListener('change', updatePlanTheme);
 planDeepspace.addEventListener('change', updatePlanTheme);
 
@@ -168,6 +179,7 @@ form.addEventListener('submit', function(event) {
 
         ticketName.innerText = userName;
         ticketEmail.innerText = userEmail; 
+        
         const zones = ['ALPHA', 'NEBULA', 'ORION', 'NOVA', 'ECHO'];
         ticketSeat.innerText = `${zones[Math.floor(Math.random() * zones.length)]} - ${Math.floor(Math.random() * 99) + 1}`;
         ticketNumber.innerText = `VN-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`;
@@ -190,3 +202,113 @@ cancelTicketBtn.addEventListener('click', function() {
         message.style.color = "#f6d365"; 
     }
 });
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+        navContainer.classList.add('is-sticky');
+    } else {
+        navContainer.classList.remove('is-sticky');
+    }
+});
+
+const overlay = document.createElement('div');
+overlay.classList.add('menu-overlay');
+document.body.appendChild(overlay);
+
+function toggleMenu(forceClose = false) {
+    const isExpanded = menuToggleBtn.getAttribute('aria-expanded') === 'true';
+    const willExpand = forceClose ? false : !isExpanded;
+    
+    menuToggleBtn.setAttribute('aria-expanded', willExpand);
+    
+    if (willExpand) {
+        primaryMenu.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; 
+    } else {
+        primaryMenu.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = ''; 
+    }
+}
+
+if (menuToggleBtn) {
+    menuToggleBtn.addEventListener('click', () => toggleMenu());
+}
+
+overlay.addEventListener('click', () => toggleMenu(true));
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            toggleMenu(true);
+        }
+    });
+});
+
+const sections = document.querySelectorAll('main > section');
+const observerOptions = {
+    root: null,
+    rootMargin: '-40% 0px -60% 0px', 
+    threshold: 0
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${currentId}`) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }
+    });
+}, observerOptions);
+
+sections.forEach(section => observer.observe(section));
+
+if (archiveList) {
+    const isTotalEmpty = archiveCards.length === 0;
+
+    if (isTotalEmpty) {
+        archiveList.style.display = 'none';
+        emptyState.style.display = 'block';
+        emptyMessage.innerText = "아직 발행된 아티클이 없습니다. 곧 첫 번째 아티클이 발행될 예정입니다.";
+        countNumber.innerText = '0';
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (isTotalEmpty) return; 
+
+            filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+            btn.setAttribute('aria-pressed', 'true');
+
+            const filterValue = btn.getAttribute('data-filter');
+            let visibleCount = 0;
+
+            archiveCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            countNumber.innerText = visibleCount;
+
+            if (visibleCount === 0) {
+                archiveList.style.display = 'none';
+                emptyState.style.display = 'block';
+                emptyMessage.innerText = "선택한 조건에 맞는 아티클이 없습니다.";
+            } else {
+                archiveList.style.display = 'grid';
+                emptyState.style.display = 'none';
+            }
+        });
+    });
+}

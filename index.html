@@ -15,12 +15,22 @@
         <h1>Voyager's Note</h1>
         <p class="header-description">우주를 읽는 두 가지 시선. 밤하늘의 낭만부터 우주 산업의 최전선까지.</p>
 
-        <nav class="site-nav" aria-label="주요 메뉴">
-            <a href="#about">보이저스 노트란?</a>
-            <a href="#features">큐레이션 플랜</a>
-            <a href="#steps">구독 가이드</a>
-            <a href="#subscribe">구독 신청</a>
-        </nav>
+        <div id="nav-container" class="nav-container">
+            <button id="menu-toggle" class="menu-toggle-btn" aria-expanded="false" aria-controls="primary-menu" aria-label="메뉴 열기/닫기">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <nav class="site-nav" aria-label="주요 메뉴">
+                <ul id="primary-menu" class="nav-list">
+                    <li><a href="#about" aria-current="page">보이저스 노트란?</a></li>
+                    <li><a href="#features">큐레이션 플랜</a></li>
+                    <li><a href="#archive">지난 아카이브</a></li>
+                    <li><a href="#subscribe">구독 신청</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -70,6 +80,49 @@
                         카테고리별로 무제한 열람할 수 있습니다. 단순한 뉴스레터 구독을 넘어, 언제든 원할 때 찾아가 우주적 영감을 채울 수 
                         있는 당신만의 아늑한 우주 도서관을 소장해 보세요.</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="archive" class="content-section">
+            <h2>지난 아카이브 (Past Insights)</h2>
+            <p style="color: #94a3b8; margin-bottom: 24px;">보이저스 노트가 그동안 탐사해 온 우주의 기록들입니다.</p>
+
+            <div class="filter-container">
+                <button class="filter-btn" aria-pressed="true" data-filter="all">전체</button>
+                <button class="filter-btn" aria-pressed="false" data-filter="starlight">스타라이트 라운지</button>
+                <button class="filter-btn" aria-pressed="false" data-filter="deepspace">딥 스페이스 랩</button>
+                <button class="filter-btn" aria-pressed="false" data-filter="special">특별 기획</button> 
+            </div>
+
+            <div class="archive-info" aria-live="polite">
+                <p class="archive-count">현재 표시되는 아티클: <strong id="count-number" style="color:#00d2ff;">4</strong>개</p>
+            </div>
+
+            <div id="archive-list" class="archive-list">
+                <article class="archive-card" data-category="starlight">
+                    <span class="card-badge badge-star">스타라이트</span>
+                    <h3>오리온자리에 얽힌 겨울밤의 신화</h3>
+                    <p class="card-date">2026. 11. 06 발행</p>
+                </article>
+                <article class="archive-card" data-category="deepspace">
+                    <span class="card-badge badge-deep">딥 스페이스</span>
+                    <h3>스페이스X 스타십, 5차 시험비행의 의미</h3>
+                    <p class="card-date">2026. 10. 30 발행</p>
+                </article>
+                <article class="archive-card" data-category="starlight">
+                    <span class="card-badge badge-star">스타라이트</span>
+                    <h3>도심 속 별보기 좋은 숨은 명소 TOP 3</h3>
+                    <p class="card-date">2026. 10. 23 발행</p>
+                </article>
+                <article class="archive-card" data-category="deepspace">
+                    <span class="card-badge badge-deep">딥 스페이스</span>
+                    <h3>제임스 웹이 포착한 우주 먼지의 비밀</h3>
+                    <p class="card-date">2026. 10. 16 발행</p>
+                </article>
+            </div>
+
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <p id="empty-message">선택한 조건에 맞는 아티클이 없습니다.</p>
             </div>
         </section>
 
