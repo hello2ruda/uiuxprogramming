@@ -54,14 +54,14 @@ emailInput.addEventListener('input', function() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     
     if (currentEmail === "") {
-        emailFeedback.style.color = '#94a3b8';
+        emailFeedback.style.color = '#cbd5e1';
         emailFeedback.innerText = '수신 가능한 이메일을 입력해 주세요.';
     } else if (!emailRegex.test(currentEmail)) {
-        emailFeedback.style.color = '#ff4757';
-        emailFeedback.innerText = "이메일 주소에 '@'와 도메인(.)을 정확히 포함해 주세요.";
+        emailFeedback.style.color = '#ff6b7a';
+        emailFeedback.innerText = "⚠ [오류] 이메일 주소에 '@'와 도메인(.)을 정확히 포함해 주세요.";
     } else {
-        emailFeedback.style.color = '#00ff88';
-        emailFeedback.innerText = "올바른 이메일 형식입니다.";
+        emailFeedback.style.color = '#4ade80';
+        emailFeedback.innerText = "✓ [확인] 올바른 이메일 형식입니다.";
     }
 });
 
@@ -111,10 +111,14 @@ vipKitCheck.addEventListener('change', function() {
 
 tabButtons.forEach(button => {
     button.addEventListener('click', function() {
-        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+        });
         tabContents.forEach(content => content.classList.remove('active'));
 
         this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
         const targetId = this.getAttribute('data-target');
         document.getElementById(targetId).classList.add('active');
     });
@@ -132,20 +136,20 @@ form.addEventListener('submit', function(event) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (userName === "") {
-        message.innerText = "이름을 입력해 주세요.";
-        message.style.color = "#ff4757"; return;
+        message.innerText = "⚠ [오류] 이름을 입력해 주세요.";
+        message.style.color = "#ff6b7a"; return;
     } 
     if (userEmail === "" || !emailRegex.test(userEmail)) {
-        message.innerText = "유효한 이메일 주소를 입력해 주세요. (@ 포함)";
-        message.style.color = "#ff4757"; return;
+        message.innerText = "⚠ [오류] 유효한 이메일 주소를 입력해 주세요. (@ 포함)";
+        message.style.color = "#ff6b7a"; return;
     } 
     if (!isStar && !isDeep) {
-        message.innerText = "최소 하나의 궤도를 선택해 주세요.";
-        message.style.color = "#ff4757"; return;
+        message.innerText = "⚠ [오류] 최소 하나의 궤도를 선택해 주세요.";
+        message.style.color = "#ff6b7a"; return;
     }
     if (isKitChecked && userAddress === "") {
-        message.innerText = "웰컴 키트를 받을 배송지 주소를 입력해 주세요.";
-        message.style.color = "#ff4757"; return;
+        message.innerText = "⚠ [오류] 웰컴 키트를 받을 배송지 주소를 입력해 주세요.";
+        message.style.color = "#ff6b7a"; return;
     }
     
     message.innerText = "";
@@ -198,7 +202,7 @@ cancelTicketBtn.addEventListener('click', function() {
         ticketArea.style.display = 'none'; 
         form.style.display = 'flex'; 
         greetingMsg.style.display = 'block';
-        message.innerText = "탑승이 취소되었습니다. 궤도를 다시 확인하고 설정해 주세요.";
+        message.innerText = "ℹ [안내] 탑승이 취소되었습니다. 궤도를 다시 확인하고 설정해 주세요.";
         message.style.color = "#f6d365"; 
     }
 });
