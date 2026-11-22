@@ -38,6 +38,165 @@ const countNumber = document.getElementById('count-number');
 const emptyState = document.getElementById('empty-state');
 const emptyMessage = document.getElementById('empty-message');
 
+const previewBtns = document.querySelectorAll('.archive-preview-btn');
+const articleModal = document.getElementById('article-modal');
+const modalBadge = document.getElementById('modal-badge');
+const modalTitle = document.getElementById('modal-title');
+const modalDate = document.getElementById('modal-date');
+const modalDesc = document.getElementById('modal-desc');
+const modalPoints = document.getElementById('modal-points');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+const modalSubscribeBtn = document.getElementById('modal-subscribe-btn');
+const modalCloseTriggers = document.querySelectorAll('[data-modal-close]');
+
+const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+
+const articleData = {
+    'article-1': {
+        category: 'starlight',
+        badgeText: '스타라이트',
+        badgeClass: 'badge-star',
+        title: '오리온자리에 얽힌 겨울밤의 신화',
+        date: '2026. 11. 06 발행',
+        desc: '겨울철 남쪽 하늘에서 가장 먼저 눈에 띄는 오리온자리. 붉게 빛나는 베텔게우스와 푸른 리겔 사이에 숨겨진 그리스 신화와 맨눈 관측 팁을 소개합니다.',
+        points: [
+            '도심에서도 쉽게 찾는 오리온의 허리띠(삼태성) 길잡이',
+            '겨울철 대삼각형과 함께 감상하는 밤하늘 산책 코스',
+            '천체 사진가가 들려주는 오리온 대성운 촬영 비하인드'
+        ]
+    },
+    'article-2': {
+        category: 'deepspace',
+        badgeText: '딥 스페이스',
+        badgeClass: 'badge-deep',
+        title: '스페이스X 스타십, 5차 시험비행의 의미',
+        date: '2026. 10. 30 발행',
+        desc: '초대형 발사체 재사용 기술의 분수령이 된 스타십 5차 시험비행을 분석합니다. 발사 비용 절감이 글로벌 위성 통신과 달 탐사 산업에 미칠 파급력을 짚어봅니다.',
+        points: [
+            '슈퍼헤비 부스터 회수 기술이 가져올 발사 단가 혁신',
+            '아르테미스 유인 달 착륙 프로젝트 일정에 미치는 영향',
+            '국내외 우주 발사체 스타트업의 대응 전략 분석'
+        ]
+    },
+    'article-3': {
+        category: 'starlight',
+        badgeText: '스타라이트',
+        badgeClass: 'badge-star',
+        title: '도심 속 별보기 좋은 숨은 명소 TOP 3',
+        date: '2026. 10. 23 발행',
+        desc: '멀리 떠나지 않아도 퇴근 후 가볍게 들러 밤하늘을 올려다볼 수 있는 수도권 인근 관측 스팟 3곳과 준비물 체크리스트를 정리했습니다.',
+        points: [
+            '광해가 적고 접근성이 뛰어난 야간 산책 포인트 3선',
+            '별자리 앱 활용법과 눈의 암순응을 돕는 붉은 손전등 팁',
+            '초보자를 위한 스마트폰 야간 별 사진 촬영 설정'
+        ]
+    },
+    'article-4': {
+        category: 'deepspace',
+        badgeText: '딥 스페이스',
+        badgeClass: 'badge-deep',
+        title: '제임스 웹이 포착한 우주 먼지의 비밀',
+        date: '2026. 10. 16 발행',
+        desc: '적외선 관측을 통해 베일을 벗은 초기 우주의 성간 먼지 데이터를 해석합니다. 행성 탄생의 실마리와 차세대 우주 망원경 개발 동향을 함께 다룹니다.',
+        points: [
+            '허블 망원경과 비교한 제임스 웹 적외선 관측의 강점',
+            '초기 은하 형성 과정에서 우주 먼지가 수행하는 역할',
+            '천문학 빅데이터 분석에 도입되는 AI 기술 사례'
+        ]
+    }
+};
+
+let lastFocusedElement = null;
+let currentModalCategory = null;
+
+function openModal(articleId, triggerEl) {
+    const data = articleData[articleId];
+    if (!data) return;
+
+    lastFocusedElement = triggerEl;
+    currentModalCategory = data.category;
+
+    modalBadge.textContent = data.badgeText;
+    modalBadge.className = `card-badge ${data.badgeClass}`;
+    modalTitle.textContent = data.title;
+    modalDate.textContent = data.date;
+    modalDesc.textContent = data.desc;
+    modalPoints.innerHTML = data.points.map(point => `<li>${point}</li>`).join('');
+
+    articleModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    modalCloseBtn.focus();
+}
+
+function closeModal() {
+    if (articleModal.hidden) return;
+    articleModal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+        lastFocusedElement = null;
+    }
+}
+
+previewBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const articleId = this.getAttribute('data-article-id');
+        openModal(articleId, this);
+    });
+});
+
+modalCloseBtn.addEventListener('click', closeModal);
+
+modalCloseTriggers.forEach(btn => {
+    btn.addEventListener('click', closeModal);
+});
+
+articleModal.addEventListener('click', function(event) {
+    if (event.target === articleModal) {
+        closeModal();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && !articleModal.hidden) {
+        closeModal();
+    }
+});
+
+modalSubscribeBtn.addEventListener('click', function() {
+    const selectedCategory = currentModalCategory;
+    closeModal();
+
+    if (selectedCategory === 'starlight') {
+        planStarlight.checked = true;
+    } else if (selectedCategory === 'deepspace') {
+        planDeepspace.checked = true;
+    }
+    updatePlanTheme();
+
+    document.getElementById('subscribe').scrollIntoView({ behavior: 'smooth' });
+    nameInput.focus({ preventScroll: true });
+});
+
+function toggleAccordion(trigger) {
+    const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+    const panelId = trigger.getAttribute('aria-controls');
+    const panel = document.getElementById(panelId);
+    const item = trigger.closest('.accordion-item');
+    const statusText = trigger.querySelector('.accordion-status');
+
+    trigger.setAttribute('aria-expanded', String(!isExpanded));
+    panel.hidden = isExpanded;
+    item.classList.toggle('is-open', !isExpanded);
+    statusText.textContent = isExpanded ? '열기 +' : '닫기 −';
+}
+
+accordionTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+        toggleAccordion(this);
+    });
+});
+
 nameInput.addEventListener('input', function() {
     let currentName = this.value.trim();
     if (currentName.length > 0) {
@@ -296,7 +455,7 @@ if (archiveList) {
 
             archiveCards.forEach(card => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'block';
+                    card.style.display = 'flex';
                     visibleCount++;
                 } else {
                     card.style.display = 'none';

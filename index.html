@@ -27,6 +27,7 @@
                     <li><a href="#about" aria-current="page">보이저스 노트란?</a></li>
                     <li><a href="#features">큐레이션 플랜</a></li>
                     <li><a href="#archive">지난 아카이브</a></li>
+                    <li><a href="#faq">자주 묻는 질문</a></li>
                     <li><a href="#subscribe">구독 신청</a></li>
                 </ul>
             </nav>
@@ -85,7 +86,7 @@
 
         <section id="archive" class="content-section">
             <h2>지난 아카이브 (Past Insights)</h2>
-            <p style="color: #cbd5e1; margin-bottom: 24px;">보이저스 노트가 그동안 탐사해 온 우주의 기록들입니다.</p>
+            <p style="color: #cbd5e1; margin-bottom: 24px;">보이저스 노트가 그동안 탐사해 온 우주의 기록들입니다. 미리보기 버튼을 눌러 요약 내용을 확인해 보세요.</p>
 
             <div class="filter-container">
                 <button class="filter-btn" aria-pressed="true" data-filter="all">전체</button>
@@ -103,21 +104,25 @@
                     <span class="card-badge badge-star">스타라이트</span>
                     <h3>오리온자리에 얽힌 겨울밤의 신화</h3>
                     <p class="card-date">2026. 11. 06 발행</p>
+                    <button type="button" class="archive-preview-btn" data-article-id="article-1" aria-haspopup="dialog">아티클 미리보기</button>
                 </article>
                 <article class="archive-card" data-category="deepspace">
                     <span class="card-badge badge-deep">딥 스페이스</span>
                     <h3>스페이스X 스타십, 5차 시험비행의 의미</h3>
                     <p class="card-date">2026. 10. 30 발행</p>
+                    <button type="button" class="archive-preview-btn" data-article-id="article-2" aria-haspopup="dialog">아티클 미리보기</button>
                 </article>
                 <article class="archive-card" data-category="starlight">
                     <span class="card-badge badge-star">스타라이트</span>
                     <h3>도심 속 별보기 좋은 숨은 명소 TOP 3</h3>
                     <p class="card-date">2026. 10. 23 발행</p>
+                    <button type="button" class="archive-preview-btn" data-article-id="article-3" aria-haspopup="dialog">아티클 미리보기</button>
                 </article>
                 <article class="archive-card" data-category="deepspace">
                     <span class="card-badge badge-deep">딥 스페이스</span>
                     <h3>제임스 웹이 포착한 우주 먼지의 비밀</h3>
                     <p class="card-date">2026. 10. 16 발행</p>
+                    <button type="button" class="archive-preview-btn" data-article-id="article-4" aria-haspopup="dialog">아티클 미리보기</button>
                 </article>
             </div>
 
@@ -133,6 +138,61 @@
                 <li>매주 금요일 오전 8시, 당신의 궤도에 맞춰 큐레이션된 뉴스레터가 도착합니다.</li>
                 <li>구독자 전용 라운지에 접속하여 과거의 모든 아카이브를 무제한으로 열람합니다.</li>
             </ol>
+        </section>
+
+        <section id="faq" class="content-section">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p style="color: #cbd5e1; margin-bottom: 24px;">탑승 전 궁금한 점을 클릭하여 확인해 보세요.</p>
+
+            <div class="accordion-list">
+                <div class="accordion-item">
+                    <h3 class="accordion-heading">
+                        <button type="button" class="accordion-trigger" id="faq-btn-1" aria-expanded="false" aria-controls="faq-panel-1">
+                            <span class="accordion-title">Q. 보이저스 노트 구독료는 무료인가요?</span>
+                            <span class="accordion-status" aria-hidden="true">열기 +</span>
+                        </button>
+                    </h3>
+                    <div id="faq-panel-1" class="accordion-panel" role="region" aria-labelledby="faq-btn-1" hidden>
+                        <p>네, 이메일로 발행되는 '스타라이트 라운지'와 '딥 스페이스 랩' 뉴스레터는 모두 무료로 구독하실 수 있습니다. 두 궤도를 모두 선택하신 통합 궤도(VIP) 구독자분께는 분기별 실물 매거진 신청 혜택도 무료로 제공됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-heading">
+                        <button type="button" class="accordion-trigger" id="faq-btn-2" aria-expanded="false" aria-controls="faq-panel-2">
+                            <span class="accordion-title">Q. 뉴스레터는 언제, 어떻게 받아볼 수 있나요?</span>
+                            <span class="accordion-status" aria-hidden="true">열기 +</span>
+                        </button>
+                    </h3>
+                    <div id="faq-panel-2" class="accordion-panel" role="region" aria-labelledby="faq-btn-2" hidden>
+                        <p>매주 금요일 오전 8시에 신청하신 이메일 주소로 발송됩니다. 만약 메일이 보이지 않는다면 스팸함이나 프로모션함을 확인해 주시고, 발신 주소를 주소록에 추가해 두시면 안정적으로 수신하실 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-heading">
+                        <button type="button" class="accordion-trigger" id="faq-btn-3" aria-expanded="false" aria-controls="faq-panel-3">
+                            <span class="accordion-title">Q. VIP 실물 매거진은 어떻게 신청하나요?</span>
+                            <span class="accordion-status" aria-hidden="true">열기 +</span>
+                        </button>
+                    </h3>
+                    <div id="faq-panel-3" class="accordion-panel" role="region" aria-labelledby="faq-btn-3" hidden>
+                        <p>하단 구독 신청 폼에서 '스타라이트 라운지'와 '딥 스페이스 랩'을 모두 체크하시면 VIP 혜택 영역이 자동으로 나타납니다. 실물 매거진 우편 수령하기를 선택하고 배송지 주소를 입력해 주시면 신청이 완료됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-heading">
+                        <button type="button" class="accordion-trigger" id="faq-btn-4" aria-expanded="false" aria-controls="faq-panel-4">
+                            <span class="accordion-title">Q. 구독 중 궤도를 변경하거나 해지할 수 있나요?</span>
+                            <span class="accordion-status" aria-hidden="true">열기 +</span>
+                        </button>
+                    </h3>
+                    <div id="faq-panel-4" class="accordion-panel" role="region" aria-labelledby="faq-btn-4" hidden>
+                        <p>언제든지 가능합니다. 탑승권 발급 직후에는 하단의 '탑승 취소 및 궤도 재설정' 버튼으로 즉시 수정할 수 있으며, 이후에는 매주 발송되는 뉴스레터 하단의 링크를 통해 간편하게 궤도를 변경하거나 구독을 해지할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="subscribe" class="content-section subscribe-section">
@@ -216,6 +276,23 @@
 
         </section>
     </main>
+
+    <div id="article-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" hidden>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <span id="modal-badge" class="card-badge"></span>
+                <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="아티클 미리보기 모달 닫기">✕</button>
+            </div>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <p id="modal-date" class="modal-date"></p>
+            <p id="modal-desc" class="modal-desc"></p>
+            <ul id="modal-points" class="modal-points"></ul>
+            <div class="modal-footer">
+                <button type="button" id="modal-subscribe-btn" class="primary-button modal-action-btn">이 궤도로 구독하러 가기</button>
+                <button type="button" class="modal-secondary-btn" data-modal-close>닫기</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <p>© 2026 Voyager's Note. All rights reserved.</p>
